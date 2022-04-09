@@ -58,15 +58,15 @@ public class Municipality {
         return confirmation;
     }
 
-    public String addWetland(String name, String locationZone, String type, double km2, String photoURL, boolean protectedArea){
+    public String addWetland(String name, String zName, String locationZone, String type, double km2, String photoURL, boolean protectedArea){
 		String out ="";
 		int emptyPos = getEmptyPositionWetland();
 		if(emptyPos == -1){
 			out = "Se ha llenado la cantidad maxima de humedales";
 		}else{
-			Wetland theWetland = new Wetland(name, locationZone, type, km2, photoURL, protectedArea);
+			Wetland theWetland = new Wetland(name, zName, locationZone, type, km2, photoURL, protectedArea);
 			myWetland[emptyPos] = theWetland;	
-			out = "Se agrego el humedal " + name;
+			out = "Se agrego el humedal " + name + "de " + zName;
 		}
 		return out;
 	} 
@@ -104,6 +104,22 @@ public class Municipality {
         return out;
     }
 
+    public String addEnvMag(String Wname, String tp, double percentage){
+        String out = "";
+        boolean flag = true;
+        for(int i = 0; i<MAX_WETLAND && flag==true;i++){
+            if(myWetland[i].getName().equalsIgnoreCase(Wname)){
+                myWetland[i].addMyEnvMag(tp, percentage);
+                out += "El Plan de mantenimiento fue registrado exitosamente";
+                flag = false;
+            }else{
+                out += "No se encontro ningun humedal con el nombre " + Wname;
+                flag = false;
+            }
+        }
+        return out;
+    }
+
     public String searchSpecieInWetland(String name){
         boolean cont = false;
         String msg = "";
@@ -121,7 +137,9 @@ public class Municipality {
     public String showEnvManagements(){
         String out = "";
         for(int i=0; i<MAX_WETLAND && myWetland[i]!=null;i++){
-            
+            out += "\n" +
+            myWetland[i].getName() + "\n" +
+            myWetland[i].getEnvManagement() + "\n";
         }
         return out;
     }

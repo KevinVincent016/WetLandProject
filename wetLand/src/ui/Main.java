@@ -1,5 +1,6 @@
 package ui;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 import model.Municipality;
 
@@ -33,11 +34,12 @@ public class Main {
 		                    "(1) Crear un humedal\n" +
 		                    "(2) Registrar una nueva especie en el humedal\n" +
 		                    "(3) Registrar un evento en el humedal\n"+
-		                    "(4) Mantenimientos dados en los humedales en un año\n"+
-		                    "(5) Mostrar humedal con menos especies de flora\n"+
-                            "(6) Buscar humedal dado el nombre de una especie\n"+
-                            "(7) Mostrar informacion de los humedales\n"+
-                            "(8) Mostrar humedal con mayor cantidad de animales\n"+
+                            "(4) Registrar plan de mantenimiento al humedal\n" +
+		                    "(5) Mantenimientos dados en los humedales en un año\n"+
+		                    "(6) Mostrar humedal con menos especies de flora\n"+
+                            "(7) Buscar humedal dado el nombre de una especie\n"+
+                            "(8) Mostrar informacion de los humedales\n"+
+                            "(9) Mostrar humedal con mayor cantidad de animales\n"+
 		                    "(0) Para salir"
 	
 		);
@@ -61,14 +63,19 @@ public class Main {
             registerEventToWetland();
 			break;
 		case 4: 
+            registerEnvManagementToWetland();
 			break;
 		case 5: 
+            getEnviromentalMag();
             break;
         case 6:
             break;
         case 7:
             break;
         case 8:
+            break;
+        case 9:
+            break;
 
 		}	
 	}
@@ -101,14 +108,45 @@ public class Main {
                     break;
                 default:
                     System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                    System.out.println("(1) Flora");
-                    System.out.println("(2) Animal");
+                    System.out.println("(1) Urbano");
+                    System.out.println("(2) Rural");
                     locationOption = reader.nextInt();
             }
         }
         reader.nextLine();
+        String zName = "";
+        if(locationZ.equalsIgnoreCase("Urbano")){
+            System.out.println("Indique el nombre del barrio");
+            zName = "Barrio: " + reader.nextLine();
+        }
+        if(locationZ.equalsIgnoreCase("Rural")){
+            System.out.println("Indique el nombre del corregimiento");
+            zName = "Corregimiento: " + reader.nextLine();
+        }
         System.out.println("Indique el tipo de humedal");
-        String tp = reader.next();
+        System.out.println("(1) Publico");
+        System.out.println("(2) Privado");
+        int tp = reader.nextInt();
+        String type = "";
+        boolean ct2 = true;
+        while(ct2==true){
+            switch(tp){
+                case 1:
+                type = "Publico";
+                ct2=false;
+                break;
+                case 2:
+                type = "privado";
+                ct2=false;
+                break;
+                default:
+                System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
+                System.out.println("(1) Publico");
+                System.out.println("(2) Privado");
+                tp = reader.nextInt();
+            }
+        }
+        reader.nextLine();
         System.out.println("Ingrese los Km2 del humedal");
         double km2 = reader.nextDouble();
         reader.nextLine();
@@ -122,7 +160,7 @@ public class Main {
         }else{
             protectedZone=false;
         }
-        System.out.println("\n" + theMunicipality.addWetland(nm, locationZ, tp, km2, photo, protectedZone));
+        System.out.println("\n" + theMunicipality.addWetland(nm, zName, locationZ, type, km2, photo, protectedZone));
     }
 
     public void registerSpecieInWetland(){
@@ -193,5 +231,48 @@ public class Main {
             int y = reader.nextInt();
             System.out.println("\n" + theMunicipality.addEventToWetland(wetlandName, mang, cost, desc, d, m, y));
         }
+    }
+    
+    public void registerEnvManagementToWetland(){
+        System.out.println("Para registrar el plan de mantenimiento de un humedal, primero indica el nombre del humedal");
+        String Wname = reader.nextLine();
+        System.out.println("Ahora indica el tipo de mantenimiento es:");
+        System.out.println("(1) Restauracion");
+        System.out.println("(2) Mantenimiento");
+        System.out.println("(3) Conservacion");
+        int MagOption = reader.nextInt();
+        boolean ct = true;
+        String MagType = "";
+        while(ct==true){
+            switch(MagOption){
+                case 1:
+                    MagType = "Restauracion";
+                    ct = false;
+                    break;
+                case 2:
+                    MagType = "Mantenimiento";
+                    ct = false;
+                    break;
+                case 3:
+                    MagType = "Conservacion";
+                    ct = false;
+                    break;
+                default:
+                    System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
+                    System.out.println("(1) Restauracion");
+                    System.out.println("(2) Mantenimiento");
+                    System.out.println("(3) Conservacion");
+                    MagOption = reader.nextInt(); 
+            }
+        }
+        reader.nextLine();
+        System.out.println("Cual es el porcentaje de cumplimiento del plan (indicar solo el numero)");
+        double prc = reader.nextDouble()/100;
+        theMunicipality.addEnvMag(Wname, MagType, prc);
+    }
+
+    public void getEnviromentalMag(){
+        System.out.println("Los planes de mantenimiento hambientales en los humedales registrados son los siguientes :");
+        System.out.println(theMunicipality.showEnvManagements());
     }
 }

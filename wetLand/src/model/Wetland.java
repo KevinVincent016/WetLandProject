@@ -1,5 +1,7 @@
 package model;
 
+import java.time.ZoneId;
+
 public class Wetland{
 
     public static final int MAX_ESPECIES = 80;
@@ -10,6 +12,8 @@ public class Wetland{
 	* "name" is a private variable that stores the name of the wetland.
 	*/
     private String name;
+
+    private String zoneName;
     /**
 	* "locationZone" is a private variable that stores the location zone of the wetland.
 	*/
@@ -63,8 +67,9 @@ public class Wetland{
     * @param pUrl String, pUrl must be initialized.
     * @param pArea boolean, pArea must be initialized.
 	*/
-    public Wetland(String nm, String lZ, String tp, double kM2, String pUrl, boolean pArea){
+    public Wetland(String nm, String zNm, String lZ, String tp, double kM2, String pUrl, boolean pArea){
         name = nm;
+        zoneName = zNm;
         locationZone = lZ;
         type = tp;
         km2 = kM2;
@@ -92,6 +97,14 @@ public class Wetland{
 	*/
     public String getName(){
         return name;
+    }
+
+    public void setZoneName(String zNm){
+        zoneName = zNm;
+    }
+
+    public String getZoneName(){
+        return zoneName;
     }
 
     /**
@@ -216,6 +229,7 @@ public class Wetland{
     public String toString() {
         return
             " Nombre='" + getName() + "'" +
+            " Zona='" + getZoneName() + "'" +
             ", Ubicacion='" + getLocationZone() + "'" +
             ", tipo='" + getType() + "'" +
             ", Km2='" + getKm2() + "'" +
