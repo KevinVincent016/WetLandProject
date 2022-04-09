@@ -226,16 +226,15 @@ public class Wetland{
 
     public String toString() {
         return
-            " Nombre='" + getName() + "'" +
-            " Zona='" + getZoneName() + "'" +
-            ", Ubicacion='" + getLocationZone() + "'" +
-            ", tipo='" + getType() + "'" +
-            ", Km2='" + getKm2() + "'" +
-            ", Foto(URL)='" + getPhotoUrl() + "'" +
-            ", protectedArea='" + getProtectedArea() + "'" +
-            ", Especies='" + getSpecies() + "'" +
-            ", Mantenimientos='" + getEnvManagement() + "'" +
-            ", Eventos='" + getEvent() + "'"
+            " Nombre= '" + getName() + "'" + "\n" +
+            " Zona= '" + getZoneName() + "'" + "\n" +
+            " Ubicacion= '" + getLocationZone() + "'" + "\n" +
+            " tipo= '" + getType() + "'" + "\n" +
+            " Km2= '" + getKm2() + "'" + "\n" +
+            " Foto(URL)= '" + getPhotoUrl() + "'" + "\n" +
+            " protectedArea= '" + getProtectedArea() + "'" + "\n" +
+            " \n Especies= '" + getSpecies() + "'" + "\n" +
+            " \n Mantenimientos= '" + getEnvManagement() + "'" + "\n"
             ;
     }
 
@@ -343,5 +342,15 @@ public class Wetland{
             }
         }
         return totalFlora;
+    }
+
+    public int getNumAnimals(){
+        int totalAnimals = 0;
+        for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
+            if(mySpecie[i].getType().equalsIgnoreCase("Ave") || mySpecie[i].getType().equalsIgnoreCase("Mamifero") || mySpecie[i].getType().equalsIgnoreCase("Acuatico")){
+                totalAnimals++;
+            }
+        }
+        return totalAnimals;
     }
 }

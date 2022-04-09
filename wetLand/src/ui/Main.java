@@ -74,8 +74,10 @@ public class Main {
             getSpecieInWetland();
             break;
         case 8:
+            getWetlandInfo();
             break;
         case 9:
+            getMoreAnimalSpecie();
             break;
 
 		}	
@@ -371,4 +373,13 @@ public class Main {
        System.out.println(theMunicipality.searchSpecieInWetland(nm));
     }
 
+    public void getWetlandInfo(){
+        System.out.println("La informacion registrada de los humedales hasta el momento es la siguiente:");
+        System.out.println(theMunicipality.wetlandInfo());
+    }
+
+    public void getMoreAnimalSpecie(){
+        System.out.println("El humedal con mayor cantidad de animales es: ");
+       System.out.println(theMunicipality.getMoreAnimals());
+    }
 }

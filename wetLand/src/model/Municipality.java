@@ -42,7 +42,7 @@ public class Municipality {
     public boolean findWetland(String name){
         boolean confirmation = false;
         boolean flag = true;
-        for(int i =0; i<MAX_WETLAND && flag==true;i++){
+        for(int i =0; i<MAX_WETLAND && myWetland[i]!=null && flag==true;i++){
             if(myWetland[i]==null){
                 confirmation = false;
                 flag = false;
@@ -122,7 +122,8 @@ public class Municipality {
         for (int i=0; i<MAX_WETLAND && myWetland[i]!=null && cont==false;i++){
             boolean aux= myWetland[i].isSpecieHere(name);
             if(aux==true){
-                msg += "La especie " + name + " se encuentra en el humedal " + myWetland[i].getName();
+                msg = "La especie " + name + " se encuentra en el humedal " + myWetland[i].getName();
+                cont = true;
             }else{
                 msg += "La especie " + name + " no se encuentra registrada en ningun humedal";
             }
@@ -150,5 +151,26 @@ public class Municipality {
             }
         }
         return NameMin;
+    }
+
+    public String wetlandInfo(){
+        String out = "";
+        for(int i=0; i<MAX_WETLAND && myWetland[i]!=null;i++){
+            out += "\n" + 
+            "******************* \n" + myWetland[i].toString() + "******************* \n";
+        }
+        return out;
+    }
+
+    public String getMoreAnimals(){
+        int max = myWetland[0].getNumAnimals();
+        String NameMax = myWetland[0].getName();
+        for(int i=0;i<MAX_WETLAND && myWetland[i]!=null;i++){
+            if(max<myWetland[i].getNumAnimals()){
+                max = myWetland[i].getNumFlora();
+                NameMax = myWetland[i].getName() + " con " + myWetland[i].getNumFlora() + " cantidad de Animales";
+            }
+        }
+        return NameMax;
     }
 }

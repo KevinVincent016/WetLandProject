@@ -112,12 +112,12 @@ public class Specie {
     }
 
     public String toString() {
-        return "\n" +
-            " name='" + getName() + "'" +
-            ", scientificName='" + getScientificName() + "'" +
-            ", migratorySpecie='" + getMigratorySpecie() + "'" +
-            ", type='" + getType() + "'" +
-            "\n";
+        return 
+            " \n Nombre= '" + getName() + "'" +
+            " \n Nombre cientifico= '" + getScientificName() + "'" +
+            " \n Especie Migratoria= '" + getMigratorySpecie() + "'" +
+            " \n Tipo= '" + getType() + "'"
+            ;
     }
     
 }

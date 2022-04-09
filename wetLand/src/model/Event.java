@@ -114,9 +114,9 @@ public class Event {
     public String toString() {
         return "\n" +
             " manager='" + getManager() + "'" +
-            ", cost='" + getCost() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", theDate='" + getTheDate() + "'" +
+            "\n cost='" + getCost() + "'" +
+            "\n description='" + getDescription() + "'" +
+            "\n theDate='" + getTheDate() + "'" +
             "\n";
     }
 
