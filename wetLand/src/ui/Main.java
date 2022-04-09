@@ -1,6 +1,5 @@
 package ui;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 import model.Municipality;
 
@@ -69,8 +68,10 @@ public class Main {
             getEnviromentalMag();
             break;
         case 6:
+            getLessFloraSpecies();
             break;
         case 7:
+            getSpecieInWetland();
             break;
         case 8:
             break;
@@ -157,8 +158,24 @@ public class Main {
         boolean protectedZone=false;
         if(zP.equalsIgnoreCase("si")){
             protectedZone=true;
-        }else{
+        }else if(zP.equalsIgnoreCase("no")){
             protectedZone=false;
+        }else{
+            boolean err = true;
+            while(err==true){
+                System.out.println("Indico de forma erronea la opcion anterior");
+                System.out.println("por favor indique si el humedal es una zona protegida (Si/No)");
+                zP = reader.nextLine();
+                if(zP.equalsIgnoreCase("si") || zP.equalsIgnoreCase("no")){
+                    err = false;
+                    if(zP.equalsIgnoreCase("si")){
+                        protectedZone = true;
+                    }
+                    if(zP.equalsIgnoreCase("no")){
+                        protectedZone = false;
+                    }
+                }
+            }
         }
         System.out.println("\n" + theMunicipality.addWetland(nm, zName, locationZ, type, km2, photo, protectedZone));
     }
@@ -173,25 +190,43 @@ public class Main {
             System.out.println("indique el nombre cientifico de la especie");
             String cnm = reader.nextLine();
             System.out.println("Indique el tipo de la especie");
-            System.out.println("(1) Flora");
-            System.out.println("(2) Animal");
+            System.out.println("(1) Flora Terrestre");
+            System.out.println("(2) Flora Acuatica");
+            System.out.println("(3) Ave");
+            System.out.println("(4) Mamifero");
+            System.out.println("(5) Acuatico");
             int typeOption = reader.nextInt();
             boolean ct = true;
             String type = "";
             while(ct==true){
                 switch(typeOption){
                     case 1:
-                        type = "Flora";
+                        type = "Flora Terrestre";
                         ct = false;
                         break;
                     case 2:
-                        type = "Animal";
+                        type = "Flora Acuatica";
+                        ct = false;
+                        break;
+                    case 3:
+                        type = "Ave";
+                        ct = false;
+                        break;
+                    case 4:
+                        type = "Mamifero";
+                        ct = false;
+                        break;
+                    case 5:
+                        type = "Acuatico";
                         ct = false;
                         break;
                     default:
                         System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                        System.out.println("(1) Flora");
-                        System.out.println("(2) Animal");
+                        System.out.println("(1) Flora Terrestre");
+                        System.out.println("(2) Flora Acuatica");
+                        System.out.println("(3) Ave");
+                        System.out.println("(4) Mamifero");
+                        System.out.println("(5) Acuatico");
                         typeOption = reader.nextInt(); 
                 }
             }
@@ -201,8 +236,24 @@ public class Main {
             boolean MigSpecie = false;
             if(opMig.equalsIgnoreCase("si")){
                 MigSpecie = true;
-            }else{
+            }else if(opMig.equalsIgnoreCase("no")){
                 MigSpecie = false;
+            }else{
+                boolean err = true;
+                while(err==true){
+                    System.out.println("Indico de forma erronea la opcion anterior");
+                    System.out.println("por favor indique si la especie es migratoria (Si/No)");
+                    opMig = reader.nextLine();
+                    if(opMig.equalsIgnoreCase("si") || opMig.equalsIgnoreCase("no")){
+                        err = false;
+                        if(opMig.equalsIgnoreCase("si")){
+                            MigSpecie = true;
+                        }
+                        if(opMig.equalsIgnoreCase("no")){
+                            MigSpecie= false;
+                        }
+                    }
+                }
             }
             System.out.println("\n" + theMunicipality.addSpecieToWetland(wetlandName, nm, cnm, MigSpecie, type));
         }else{
@@ -222,13 +273,46 @@ public class Main {
             reader.nextLine();
             System.out.println("Añada una descripcion para el evento");
             String desc = reader.nextLine();
-            System.out.println("Por ultimo añada la fecha del evento");
+            System.out.println("Por ultimo añada la fecha del evento (formato d/m/aaaa)");
             System.out.print("Dia: ");
             int d = reader.nextInt();
+            if(d>31){
+                boolean err = true;
+                while(err){
+                    System.out.println("Error en la fecha, el dia no puede ser mayor a 31. Indicar denuevo");
+                    int day = reader.nextInt();
+                    if(day<=31){
+                        err = false;
+                        d = day;
+                    }
+                }
+            }
             System.out.print("Mes: ");
             int m = reader.nextInt();
+            if(m>12){
+                boolean err = true;
+                while(err){
+                    System.out.println("Error en la fecha, el mes no puede ser mayor a 12. Indicar denuevo");
+                    int month = reader.nextInt();
+                    if(month<=12){
+                        err = false;
+                        m = month;
+                    }
+                }
+            }
             System.out.print("Año: ");
             int y = reader.nextInt();
+            if(m==2 && d>28){
+                boolean err = true;
+                while(err){
+                    System.out.println("Error en la fecha, el mes Febrero (2) no puede tener mas de 28 dias. Indicar denuevo el dia");
+                    int day = reader.nextInt();
+                    if (day<=28){
+                        err = false;
+                        d=day;
+                    }
+                }
+            }
             System.out.println("\n" + theMunicipality.addEventToWetland(wetlandName, mang, cost, desc, d, m, y));
         }
     }
@@ -268,11 +352,23 @@ public class Main {
         reader.nextLine();
         System.out.println("Cual es el porcentaje de cumplimiento del plan (indicar solo el numero)");
         double prc = reader.nextDouble()/100;
-        theMunicipality.addEnvMag(Wname, MagType, prc);
+        System.out.println(theMunicipality.addEnvMag(Wname, MagType, prc));
     }
 
     public void getEnviromentalMag(){
         System.out.println("Los planes de mantenimiento hambientales en los humedales registrados son los siguientes :");
         System.out.println(theMunicipality.showEnvManagements());
     }
+
+    public void getLessFloraSpecies(){
+       System.out.println("El humedal con menor cantidad de flora es: ");
+       System.out.println(theMunicipality.getLessFlora());
+    }
+
+    public void getSpecieInWetland(){
+       System.out.println("Indique el nombre de la especie a buscar:");
+       String nm = reader.nextLine();
+       System.out.println(theMunicipality.searchSpecieInWetland(nm));
+    }
+
 }

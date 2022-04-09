@@ -1,7 +1,5 @@
 package model;
 
-import java.time.ZoneId;
-
 public class Wetland{
 
     public static final int MAX_ESPECIES = 80;
@@ -335,5 +333,15 @@ public class Wetland{
             out += "Event added sucesfully";
         }
         return out;
+    }
+
+    public int getNumFlora(){
+        int totalFlora = 0;
+        for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
+            if(mySpecie[i].getType().equalsIgnoreCase("Flora Terrestre") || mySpecie[i].getType().equalsIgnoreCase("Flora Acuatica")){
+                totalFlora++;
+            }
+        }
+        return totalFlora;
     }
 }
