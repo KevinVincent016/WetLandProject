@@ -11,6 +11,9 @@ public class Wetland{
 	*/
     private String name;
 
+    /**
+	* "xoneName" is a private variable that stores the name of the area where the wetland is located.
+	*/
     private String zoneName;
     /**
 	* "locationZone" is a private variable that stores the location zone of the wetland.
@@ -33,6 +36,9 @@ public class Wetland{
 	*/
     private boolean protectedArea;
 
+    /**
+	* "theSpecie" is a private object that stores the information of a Specie.
+	*/
     private Specie theSpecie;
 
     /**
@@ -41,23 +47,29 @@ public class Wetland{
     private Specie [] mySpecie;
 
     /**
-	* "myEnvMag" is a private variable that stores the environmental plan of the wetland.
+	* "myEnvMag" is a private object that stores the information of environmental plan of the wetland.
 	*/
     private EnvManagement EnvMag;
 
+    /**
+	* "myEnvManagement" is a private array that stores the environmental management plans of the wetland.
+	*/
     private EnvManagement [] myEnvMag;
 
     /**
-	* "myEvent" is a private variable that stores the events of the wetland.
+	* "myEvent" is a private object that stores the events of the wetland.
 	*/
     private Event theEvent;
 
+    /**
+	* "myEvents" is a private array that stores the information of the events of the wetland.
+	*/
     private Event [] myEvents;
 
     /**
 	* Description: the "Wetland" method is of type constructor and assigns the values to the Wetland object.<br>
 	* <b> pre:</b> The variables "name", "locationZone", "type", "km2", "photoUrl" and "protectedArea" must be declared.<br>
-	* <b> pos:</b> the variables "name", "locationZone", "type", "km2", "photoUrl" and "protectedArea" are initialized.
+	* <b> pos:</b> the variables "name", "locationZone", "type", "km2", "photoUrl", "protectedArea" and the arrays "mySpecie", "myEnvMag" and "myEvents" are initialized.
     * @param nm String, nm must be initialized.
     * @param lZ String, lZ must be initialized.
     * @param tp String, tp must be initialized.
@@ -97,10 +109,21 @@ public class Wetland{
         return name;
     }
 
+    /**
+	* Description: the setZoneName method modifies the private variable zoneName.<br>
+	* <b> pre:</b> The variable "zoneName" must be declared.<br>
+	* <b> pos:</b> the variable "zoneName" is modified.
+    * @param nm String, zNm must be initialized.
+	*/
     public void setZoneName(String zNm){
         zoneName = zNm;
     }
 
+    /**
+	* Description: the getZoneName method returns the value of the zoneName variable.<br>
+	* <b> pre:</b> The variable "zoneName" must be initialized.<br>
+	* @return zoneName String, zoneName value.
+	*/
     public String getZoneName(){
         return zoneName;
     }
@@ -200,6 +223,11 @@ public class Wetland{
         return protectedArea;
     }
 
+    /**
+	* Description: the getSpecies method returns all the species in the wetland.<br>
+	* <b> pre:</b> The array "mySpecie" must be initialized.<br>
+	* @return out String, Species info.
+	*/
     public String getSpecies(){
         String out = "";
         for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
@@ -208,6 +236,11 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the getEnvManagement method returns all the environmental management plans in the wetland.<br>
+	* <b> pre:</b> The array "myEnvMag" must be initialized.<br>
+	* @return out String, environmental management plans info.
+	*/
     public String getEnvManagement(){
         String out = "";
         for(int i=0;i<MAX_ENVMANAGEMENTS && myEnvMag[i]!=null;i++){
@@ -216,6 +249,11 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the getEvent method returns all the events in the wetland.<br>
+	* <b> pre:</b> The array "myEvent" must be initialized.<br>
+	* @return out String, Events info.
+	*/
     public String getEvent(){
         String out = "";
         for(int i=0;i<MAX_EVENTS && myEvents[i]!=null;i++){
@@ -224,6 +262,10 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: take all the attributes of the wetland and convert it to a String line.<br>
+	* @return out String, Wetland info.
+	*/
     public String toString() {
         return
             " Nombre= '" + getName() + "'" + "\n" +
@@ -238,6 +280,11 @@ public class Wetland{
             ;
     }
 
+    /**
+	* Description: the getEmptyPositionSpecies method returns the empty position in the Species array.<br>
+	* <b> pre:</b> The array "mySpecie" must be initialized.<br>
+	* @return position int, empty position.
+	*/
     public int getEmptyPositionSpecies(){
         boolean emptyPosition = false;
 		int position = -1;
@@ -254,7 +301,11 @@ public class Wetland{
 	* Description: the addMySpecie method add a Specie to the private array mySpecie.<br>
 	* <b> pre:</b> The array "mySpecie" must be declared.<br>
 	* <b> pos:</b> the array "mySpecie" is modified.
-    * @param mySp Specie, mySp must be initialized.
+    * @param nm String, name of the specie.
+    * @param cNm String, scientific name of the specie.
+    * @param mSpecie boolean, if the specie is a Migratory Specie.
+    * @param tp String, type of the specie.
+    * @return out String, Validation of the registration.
 	*/
     public String addMySpecie(String nm, String cNm, boolean mSpecie, String tp){
         String out = "";
@@ -269,6 +320,11 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the isSpecieHere method look for a determinate specie in the wetland.<br>
+    * @param nm String, name of the specie.
+    * @return out boolean, indicator of the search.
+	*/
     public boolean isSpecieHere(String nm){
         boolean out = false;
         boolean flag = true;
@@ -284,6 +340,11 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the getEmptyPositionEnvMag method returns the empty position in the Environmental Management array.<br>
+	* <b> pre:</b> The array "myEnvMag" must be initialized.<br>
+	* @return position int, empty position.
+	*/
     public int getEmptyPositionEnvMag(){
         boolean emptyPEnv = false;
 		int position = -1;
@@ -296,6 +357,14 @@ public class Wetland{
 		return position;
     }
 
+    /**
+	* Description: the addMyEnvMag method add a EnvManagement to the private array myEnvMag.<br>
+	* <b> pre:</b> The array "myEnvMag" must be declared.<br>
+	* <b> pos:</b> the array "myEnvMag" is modified.
+    * @param tp String, type of the specie.
+    * @param percentage double, the percentage of compliance of the plan.
+    * @return out String, Validation of the registration.
+	*/
     public String addMyEnvMag(String tp, double percentage){
         String out = "";
         int emP = getEmptyPositionEnvMag();
@@ -309,6 +378,11 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the getEmptyPositionEvent method returns the empty position in the Event array.<br>
+	* <b> pre:</b> The array "myEvents" must be initialized.<br>
+	* @return position int, empty position.
+	*/
     public int getEmptyPositionEvent(){
         boolean emptyPE = false;
 		int position = -1;
@@ -321,6 +395,16 @@ public class Wetland{
 		return position;
     }
 
+    /**
+	* Description: the addMyEvent method add a Event to the private array myEvents.<br>
+	* <b> pre:</b> The array "myEvents" must be declared.<br>
+	* <b> pos:</b> the array "myEvents" is modified.
+    * @param manager String, name of the manager in the event.
+    * @param cost double, the cost of the event.
+    * @param description String, a description of the event.
+    * @param date Date, an object of Date.
+    * @return out String, Validation of the registration.
+	*/
     public String addMyEvent(String manager, double cost, String description, Date date){
         String out = "";
         int emP = getEmptyPositionEvent();
@@ -334,6 +418,10 @@ public class Wetland{
         return out;
     }
 
+    /**
+	* Description: the getNumFlora method returns the quantity of flora species in the wetland.<br>
+	* @return totalFlora int, Total of flora species.
+	*/
     public int getNumFlora(){
         int totalFlora = 0;
         for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
@@ -344,6 +432,10 @@ public class Wetland{
         return totalFlora;
     }
 
+    /**
+	* Description: the getNumAnimals method returns the quantity of animals in the wetland.<br>
+	* @return totalAnimals int, Total of Animals.
+	*/
     public int getNumAnimals(){
         int totalAnimals = 0;
         for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){

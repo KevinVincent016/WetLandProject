@@ -23,10 +23,11 @@ public class Event {
     /**
 	* Description: the "Event" method is of type constructor and assigns the values to the Event object.<br>
 	* <b> pre:</b> The variables "manager", "cost" and "description" must be declared.<br>
-	* <b> pos:</b> the variables "manager", "cost" and "description" are initialized.
+	* <b> pos:</b> the variables "manager", "cost", "description" and the object "theDate" are initialized.
     * @param mg String, mg must be initialized.
     * @param cst double, cst must be initialized.
     * @param dec String, dec must be initialized.
+    * @param dt Date, dt must be initialized.
 	*/
     public Event(String mg, double cst, String dec, Date dt){
         manager = mg;
@@ -111,6 +112,10 @@ public class Event {
         return theDate;
     }
 
+    /**
+	* Description: take all the attributes of the Event and convert it to a String line.<br>
+	* @return out String, Event info.
+	*/
     public String toString() {
         return "\n" +
             " manager='" + getManager() + "'" +

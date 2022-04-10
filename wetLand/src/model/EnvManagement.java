@@ -62,6 +62,10 @@ public class EnvManagement {
         return compliancePercentage;
     }
 
+    /**
+	* Description: take all the attributes of the EnvManagement and convert it to a String line.<br>
+	* @return out String, EnvManagement info.
+	*/
     public String toString() {
         return 
             "\n Tipo='" + getType() + "'" +

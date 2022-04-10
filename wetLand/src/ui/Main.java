@@ -5,8 +5,14 @@ import model.Municipality;
 
 public class Main {
     
+    /**
+	* "reader" is the reader tool of the project.
+	*/
     private Scanner reader;
 
+    /**
+	* "theMunicipality" is a private object that connect the Main with the controller class "Municipality".
+	*/
     private Municipality theMunicipality;
 
     public static void main(String[] args) {
@@ -23,10 +29,20 @@ public class Main {
         }while (answer != 0);
     }
 
+    /**
+	* Description: the "Main" method is of type constructor.<br>
+	* <b> pre:</b> "reader" must be declared.<br>
+	* <b> pos:</b> "reader" is initialized.
+	*/
     public Main(){
         reader = new Scanner(System.in);
     }
 
+    /**
+	* Description: the "Menu" method print the options of the program.<br>
+	* <b> pre:</b> "reader" must be created.<br>
+	* @return input int, the selected option
+	*/
     public int Menu() {
 		int input;
 		System.out.println("\n\nMenu del programa, digite una opcion\n"+ 
@@ -47,6 +63,10 @@ public class Main {
 		return input;
 	}
 
+    /**
+	* Description: the "answerOption" method executes the option that the user selected.<br>
+    * @param userOption int, the selected option.
+	*/
     public void answerOption(int userOption) {
 		switch(userOption) {
 		case 0: 
@@ -83,12 +103,19 @@ public class Main {
 		}	
 	}
 
+    /**
+	* Description: the "initializationController" method create the object "theMunicipality".<br>
+    * <b> pos:</b> the "theMunicipality" object is created.
+	*/
     public void initializationController(){
         System.out.println("Bienvenido al sistema de registro de humedales, digite el municipio");
         String name = reader.nextLine();
         theMunicipality = new Municipality(name);
     }
 
+    /**
+	* Description: the "registerWetland" method ask for the information needed to register a wetland and when is done call a method to register the wetland.<br>
+	*/
     public void registerWetland(){
         System.out.println("Para el registro de un humedal se debe llenar la siguiente informacion:");
         System.out.println("Indique el nombre del humedal");
@@ -150,7 +177,7 @@ public class Main {
             }
         }
         reader.nextLine();
-        System.out.println("Ingrese los Km2 del humedal");
+        System.out.println("Ingrese los Km2 del humedal (solo valor numerico)");
         double km2 = reader.nextDouble();
         reader.nextLine();
         System.out.println("Ingrese la URL de la foto del humedal");
@@ -182,6 +209,9 @@ public class Main {
         System.out.println("\n" + theMunicipality.addWetland(nm, zName, locationZ, type, km2, photo, protectedZone));
     }
 
+    /**
+	* Description: the "registerSpecieInWetland" method ask for the information needed to register a Specie and when is done, call a method to register the Specie.<br>
+	*/
     public void registerSpecieInWetland(){
         System.out.println("Indique el humedal donde se va a registrar la especie:");
         String wetlandName = reader.nextLine();
@@ -263,6 +293,9 @@ public class Main {
         }
     }
 
+    /**
+	* Description: the "registerEventToWetland" method ask for the information needed to register a event and when is done call a method to register the event.<br>
+	*/
     public void registerEventToWetland(){
         System.out.println("Indique el humedal donde se va a registrar la especie:");
         String wetlandName = reader.nextLine();
@@ -270,7 +303,7 @@ public class Main {
         if(conf==true){
             System.out.println("Indique el nombre del encargado del evento");
             String mang = reader.nextLine();
-            System.out.println("Indique el costo que tendra el evento");
+            System.out.println("Indique el costo que tendra el evento (solo valor numerico)");
             double cost = reader.nextDouble();
             reader.nextLine();
             System.out.println("Añada una descripcion para el evento");
@@ -319,6 +352,9 @@ public class Main {
         }
     }
     
+    /**
+	* Description: the "registerEnvManagementToWetland" method ask for the information needed to register a Enviromental Management and when is done call a method to register the EnvManagement.<br>
+	*/
     public void registerEnvManagementToWetland(){
         System.out.println("Para registrar el plan de mantenimiento de un humedal, primero indica el nombre del humedal");
         String Wname = reader.nextLine();
@@ -352,32 +388,47 @@ public class Main {
             }
         }
         reader.nextLine();
-        System.out.println("Cual es el porcentaje de cumplimiento del plan (indicar solo el numero)");
+        System.out.println("Cual es el porcentaje de cumplimiento del plan (solo valor numerico)");
         double prc = reader.nextDouble()/100;
         System.out.println(theMunicipality.addEnvMag(Wname, MagType, prc));
     }
 
+    /**
+	* Description: the "getEnviromentalMag" method call a method in the controller to get all the Enviromental Managements.<br>
+	*/
     public void getEnviromentalMag(){
         System.out.println("Los planes de mantenimiento hambientales en los humedales registrados son los siguientes :");
         System.out.println(theMunicipality.showEnvManagements());
     }
 
+    /**
+	* Description: the "getLessFloraSpecies" method call a method in the controller to get the wetland with less flora species.<br>
+	*/
     public void getLessFloraSpecies(){
        System.out.println("El humedal con menor cantidad de flora es: ");
        System.out.println(theMunicipality.getLessFlora());
     }
 
+    /**
+	* Description: the "getSpecieInWetland" method call a method in the controller to look for a specie in the registered wetlands.<br>
+	*/
     public void getSpecieInWetland(){
        System.out.println("Indique el nombre de la especie a buscar:");
        String nm = reader.nextLine();
        System.out.println(theMunicipality.searchSpecieInWetland(nm));
     }
 
+    /**
+	* Description: the "getWetlandInfo" method call a method in the controller to get all the information of the registered wetlands.<br>
+	*/
     public void getWetlandInfo(){
         System.out.println("La informacion registrada de los humedales hasta el momento es la siguiente:");
         System.out.println(theMunicipality.wetlandInfo());
     }
 
+    /**
+	* Description: the "getMoreAnimalSpecie" method call a method in the controller to get the wetland with more animals species registered.<br>
+	*/
     public void getMoreAnimalSpecie(){
         System.out.println("El humedal con mayor cantidad de animales es: ");
        System.out.println(theMunicipality.getMoreAnimals());

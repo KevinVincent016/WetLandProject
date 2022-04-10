@@ -111,6 +111,10 @@ public class Specie {
         return type;
     }
 
+    /**
+	* Description: take all the attributes of the Specie and convert it to a String line.<br>
+	* @return out String, Specie info.
+	*/
     public String toString() {
         return 
             " \n Nombre= '" + getName() + "'" +
