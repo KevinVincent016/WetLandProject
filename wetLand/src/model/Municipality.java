@@ -141,6 +141,7 @@ public class Municipality {
 	* <b> pre:</b> The array "myWetland" must be declared.<br>
 	* <b> pos:</b> the array "myWetland" is modified.
     * @param wName String, name of the wetland where the event will be add.
+    * @param type String, type of the event
     * @param manager String, name of the manager of the event.
     * @param cost double, cost of the event.
     * @param desc String, a description of the event.
@@ -149,13 +150,13 @@ public class Municipality {
     * @param year int, year of the event.
     * @return out String, Validation of the registration.
 	*/
-    public String addEventToWetland(String wName, String manager, double cost, String desc, int day, int month, int year){
+    public String addEventToWetland(String wName, String type, String manager, double cost, String desc, int day, int month, int year){
         String out = "";
         boolean flag = true;
-        for(int i = 0; i<MAX_WETLAND && flag==true;i++){
+        for(int i = 0; i<MAX_WETLAND && myWetland[i]!=null && flag==true;i++){
             if(myWetland[i].getName().equalsIgnoreCase(wName)){
                 Date theDate = new Date(day,month,year);
-                myWetland[i].addMyEvent(manager, cost, desc, theDate);
+                myWetland[i].addMyEvent(type, manager, cost, desc, theDate);
                 out = "El evento fue registrado exitosamente";
                 flag = false;
             }else{

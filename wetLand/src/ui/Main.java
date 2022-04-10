@@ -301,6 +301,42 @@ public class Main {
         String wetlandName = reader.nextLine();
         boolean conf = theMunicipality.findWetland(wetlandName);
         if(conf==true){
+            System.out.println("Indique el tipo de evento");
+            System.out.println("(1) Mantenimientos");
+            System.out.println("(2) Visitas de colegio");
+            System.out.println("(3) Actividades de mejoramiento");
+            System.out.println("(4) Celebraciones");
+            int tp = reader.nextInt();
+            boolean ct = true;
+            String type = "";
+            while(ct==true){
+                switch(tp){
+                    case 1:
+                        type = "Mantenimientos";
+                        ct = false;
+                        break;
+                    case 2:
+                        type = "Visitas de colegio";
+                        ct = false;
+                        break;
+                    case 3:
+                        type = "Actividades de mejoramiento";
+                        ct = false;
+                        break;
+                    case 4:
+                        type = "Celebraciones";
+                        ct = false;
+                        break;
+                    default:
+                        System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
+                        System.out.println("(1) Mantenimientos");
+                        System.out.println("(2) Visitas de colegio");
+                        System.out.println("(3) Actividades de mejoramiento");
+                        System.out.println("(4) Celebraciones");
+                        tp = reader.nextInt(); 
+                }
+            }
+            reader.nextLine();
             System.out.println("Indique el nombre del encargado del evento");
             String mang = reader.nextLine();
             System.out.println("Indique el costo que tendra el evento (solo valor numerico)");
@@ -348,7 +384,7 @@ public class Main {
                     }
                 }
             }
-            System.out.println("\n" + theMunicipality.addEventToWetland(wetlandName, mang, cost, desc, d, m, y));
+            System.out.println("\n" + theMunicipality.addEventToWetland(type, wetlandName, mang, cost, desc, d, m, y));
         }
     }
     

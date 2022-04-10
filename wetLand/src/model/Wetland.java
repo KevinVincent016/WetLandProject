@@ -70,12 +70,13 @@ public class Wetland{
 	* Description: the "Wetland" method is of type constructor and assigns the values to the Wetland object.<br>
 	* <b> pre:</b> The variables "name", "locationZone", "type", "km2", "photoUrl" and "protectedArea" must be declared.<br>
 	* <b> pos:</b> the variables "name", "locationZone", "type", "km2", "photoUrl", "protectedArea" and the arrays "mySpecie", "myEnvMag" and "myEvents" are initialized.
-    * @param nm String, nm must be initialized.
-    * @param lZ String, lZ must be initialized.
-    * @param tp String, tp must be initialized.
-    * @param kM2 double, kM2 must be initialized.
-    * @param pUrl String, pUrl must be initialized.
-    * @param pArea boolean, pArea must be initialized.
+    * @param nm String, name of the wetland.
+    * @param zNm String, name location where is the wetland
+    * @param lZ String, location of the wetland.
+    * @param tp String, type of wetland.
+    * @param kM2 double, kM2 of the wetland.
+    * @param pUrl String, photo url of the wetland.
+    * @param pArea boolean, if wetland is a protected area.
 	*/
     public Wetland(String nm, String zNm, String lZ, String tp, double kM2, String pUrl, boolean pArea){
         name = nm;
@@ -113,7 +114,7 @@ public class Wetland{
 	* Description: the setZoneName method modifies the private variable zoneName.<br>
 	* <b> pre:</b> The variable "zoneName" must be declared.<br>
 	* <b> pos:</b> the variable "zoneName" is modified.
-    * @param nm String, zNm must be initialized.
+    * @param zNm String, zNm must be initialized.
 	*/
     public void setZoneName(String zNm){
         zoneName = zNm;
@@ -399,19 +400,20 @@ public class Wetland{
 	* Description: the addMyEvent method add a Event to the private array myEvents.<br>
 	* <b> pre:</b> The array "myEvents" must be declared.<br>
 	* <b> pos:</b> the array "myEvents" is modified.
+    * @param tp String, type of the event.
     * @param manager String, name of the manager in the event.
     * @param cost double, the cost of the event.
     * @param description String, a description of the event.
     * @param date Date, an object of Date.
     * @return out String, Validation of the registration.
 	*/
-    public String addMyEvent(String manager, double cost, String description, Date date){
+    public String addMyEvent(String tp, String manager, double cost, String description, Date date){
         String out = "";
         int emP = getEmptyPositionEvent();
         if(emP == -1){
             out = "There are too much Events, not registered";
         }else{
-            theEvent = new Event(manager, cost, description, date);
+            theEvent = new Event(tp, manager, cost, description, date);
             myEvents[emP]=theEvent;
             out += "Event added sucesfully";
         }

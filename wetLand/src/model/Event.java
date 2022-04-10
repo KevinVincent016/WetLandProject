@@ -3,6 +3,10 @@ package model;
 public class Event {
     
     /**
+	* "type" is a private variable that stores the type of the event.
+	*/
+    private String type;
+    /**
 	* "manager" is a private variable that stores the name of the manager.
 	*/
     private String manager;
@@ -24,16 +28,37 @@ public class Event {
 	* Description: the "Event" method is of type constructor and assigns the values to the Event object.<br>
 	* <b> pre:</b> The variables "manager", "cost" and "description" must be declared.<br>
 	* <b> pos:</b> the variables "manager", "cost", "description" and the object "theDate" are initialized.
+    * @param tp String, tp must be initialized.
     * @param mg String, mg must be initialized.
     * @param cst double, cst must be initialized.
     * @param dec String, dec must be initialized.
     * @param dt Date, dt must be initialized.
 	*/
-    public Event(String mg, double cst, String dec, Date dt){
+    public Event(String tp, String mg, double cst, String dec, Date dt){
+        type = tp;
         manager = mg;
         cost = cst;
         description = dec;
         theDate = dt;
+    }
+
+    /**
+	* Description: the setType method modifies the private variable type.<br>
+	* <b> pre:</b> The variable "type" must be declared.<br>
+	* <b> pos:</b> the variable "type" is modified.
+    * @param tp String, tp must be initialized.
+	*/
+    public void setType(String tp){
+        type = tp;
+    }
+
+    /**
+	* Description: the getType method returns the value of the type variable.<br>
+	* <b> pre:</b> The variable "type" must be initialized.<br>
+	* @return type String, type value.
+	*/
+    public String getType(){
+        return type;
     }
 
     /**
@@ -118,7 +143,8 @@ public class Event {
 	*/
     public String toString() {
         return "\n" +
-            " manager='" + getManager() + "'" +
+            " type='" + getType() + "'" +
+            "\n manager='" + getManager() + "'" +
             "\n cost='" + getCost() + "'" +
             "\n description='" + getDescription() + "'" +
             "\n theDate='" + getTheDate() + "'" +
