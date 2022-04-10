@@ -45,17 +45,17 @@ public class Main {
 	*/
     public int Menu() {
 		int input;
-		System.out.println("\n\nMenu del programa, digite una opcion\n"+ 
-		                    "(1) Crear un humedal\n" +
-		                    "(2) Registrar una nueva especie en el humedal\n" +
-		                    "(3) Registrar un evento en el humedal\n"+
-                            "(4) Registrar plan de mantenimiento al humedal\n" +
-		                    "(5) Mantenimientos dados en los humedales en un año\n"+
-		                    "(6) Mostrar humedal con menos especies de flora\n"+
-                            "(7) Buscar humedal dado el nombre de una especie\n"+
-                            "(8) Mostrar informacion de los humedales\n"+
-                            "(9) Mostrar humedal con mayor cantidad de animales\n"+
-		                    "(0) Para salir"
+		System.out.println("\n\nProgram menu, type an option\n"+ 
+		                    "(1) Create a wetland\n" +
+		                    "(2) Record a new species in the wetland.\n" +
+		                    "(3) Record an event in the wetland\n"+
+                            "(4) Record maintenance plan for the wetland.\n" +
+		                    "(5) Maintenance of wetlands in one year\n"+
+		                    "(6) Show wetland with fewer species of flora\n"+
+                            "(7) Search for wetland given a species name\n"+
+                            "(8) Show wetlands information\n"+
+                            "(9) Show wetland with the largest number of animals\n"+
+		                    "(0) To exit"
 	
 		);
 		input = reader.nextInt();
@@ -70,7 +70,7 @@ public class Main {
     public void answerOption(int userOption) {
 		switch(userOption) {
 		case 0: 
-			System.out.println("cerrando la aplicacion");
+			System.out.println("closing the application");
 			break;
 		case 1:
             registerWetland();
@@ -108,7 +108,7 @@ public class Main {
     * <b> pos:</b> the "theMunicipality" object is created.
 	*/
     public void initializationController(){
-        System.out.println("Bienvenido al sistema de registro de humedales, digite el municipio");
+        System.out.println("Welcome to the wetlands registry system, enter the municipality");
         String name = reader.nextLine();
         theMunicipality = new Municipality(name);
     }
@@ -117,11 +117,11 @@ public class Main {
 	* Description: the "registerWetland" method ask for the information needed to register a wetland and when is done call a method to register the wetland.<br>
 	*/
     public void registerWetland(){
-        System.out.println("Para el registro de un humedal se debe llenar la siguiente informacion:");
-        System.out.println("Indique el nombre del humedal");
+        System.out.println("For the registration of a wetland, the following information must be filled out:");
+        System.out.println("Indicate the name of the wetland");
         String nm = reader.nextLine();
-        System.out.println("Indique en que zona se encuentra:");
-        System.out.println("(1) Urbano");
+        System.out.println("Indicate in which area you are located:");
+        System.out.println("(1) Urban");
         System.out.println("(2) Rural");
         int locationOption = reader.nextInt();
         String locationZ = "";
@@ -129,7 +129,7 @@ public class Main {
         while(ct==true){
             switch(locationOption){
                 case 1:
-                    locationZ = "Urbano";
+                    locationZ = "Urban";
                     ct=false;
                     break;
                 case 2:
@@ -137,67 +137,67 @@ public class Main {
                     ct=false;
                     break;
                 default:
-                    System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                    System.out.println("(1) Urbano");
+                    System.out.println("Only the values shown are allowed, select from the following options:");
+                    System.out.println("(1) Urban");
                     System.out.println("(2) Rural");
                     locationOption = reader.nextInt();
             }
         }
         reader.nextLine();
         String zName = "";
-        if(locationZ.equalsIgnoreCase("Urbano")){
-            System.out.println("Indique el nombre del barrio");
-            zName = "Barrio: " + reader.nextLine();
+        if(locationZ.equalsIgnoreCase("Urban")){
+            System.out.println("Indicate the name of the neighborhood");
+            zName = "neighborhood: " + reader.nextLine();
         }
         if(locationZ.equalsIgnoreCase("Rural")){
-            System.out.println("Indique el nombre del corregimiento");
-            zName = "Corregimiento: " + reader.nextLine();
+            System.out.println("Indicate the name of the township");
+            zName = "township: " + reader.nextLine();
         }
-        System.out.println("Indique el tipo de humedal");
-        System.out.println("(1) Publico");
-        System.out.println("(2) Privado");
+        System.out.println("Indicate the type of wetland");
+        System.out.println("(1) Public");
+        System.out.println("(2) Private");
         int tp = reader.nextInt();
         String type = "";
         boolean ct2 = true;
         while(ct2==true){
             switch(tp){
                 case 1:
-                type = "Publico";
+                type = "Public";
                 ct2=false;
                 break;
                 case 2:
-                type = "privado";
+                type = "private";
                 ct2=false;
                 break;
                 default:
-                System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                System.out.println("(1) Publico");
-                System.out.println("(2) Privado");
+                System.out.println("Only the values shown are allowed, select from the following options:");
+                System.out.println("(1) Public");
+                System.out.println("(2) Private");
                 tp = reader.nextInt();
             }
         }
         reader.nextLine();
-        System.out.println("Ingrese los Km2 del humedal (solo valor numerico)");
+        System.out.println("Enter the Km2 of the wetland (numerical value only)");
         double km2 = reader.nextDouble();
         reader.nextLine();
-        System.out.println("Ingrese la URL de la foto del humedal");
+        System.out.println("Enter wetland photo URL");
         String photo = reader.nextLine();
-        System.out.println("Por ultimo, indique si el humedal es una zona protegida (Si/No)");
+        System.out.println("Finally, indicate if the wetland is a protected area (Yes/No).");
         String zP = reader.nextLine();
         boolean protectedZone=false;
-        if(zP.equalsIgnoreCase("si")){
+        if(zP.equalsIgnoreCase("yes")){
             protectedZone=true;
         }else if(zP.equalsIgnoreCase("no")){
             protectedZone=false;
         }else{
             boolean err = true;
             while(err==true){
-                System.out.println("Indico de forma erronea la opcion anterior");
-                System.out.println("por favor indique si el humedal es una zona protegida (Si/No)");
+                System.out.println("Wrongly indicated the previous option");
+                System.out.println("please indicate if the wetland is a protected area (Yes/No)");
                 zP = reader.nextLine();
-                if(zP.equalsIgnoreCase("si") || zP.equalsIgnoreCase("no")){
+                if(zP.equalsIgnoreCase("yes") || zP.equalsIgnoreCase("no")){
                     err = false;
-                    if(zP.equalsIgnoreCase("si")){
+                    if(zP.equalsIgnoreCase("yes")){
                         protectedZone = true;
                     }
                     if(zP.equalsIgnoreCase("no")){
@@ -213,72 +213,72 @@ public class Main {
 	* Description: the "registerSpecieInWetland" method ask for the information needed to register a Specie and when is done, call a method to register the Specie.<br>
 	*/
     public void registerSpecieInWetland(){
-        System.out.println("Indique el humedal donde se va a registrar la especie:");
+        System.out.println("Indicate the wetland where the species is to be recorded:");
         String wetlandName = reader.nextLine();
         boolean conf = theMunicipality.findWetland(wetlandName);
         if(conf==true){
-            System.out.println("Ahora indique el nombre de la especie");
+            System.out.println("Now indicate the name of the species");
             String nm = reader.nextLine();
-            System.out.println("indique el nombre cientifico de la especie");
+            System.out.println("indicate the scientific name of the species");
             String cnm = reader.nextLine();
-            System.out.println("Indique el tipo de la especie");
-            System.out.println("(1) Flora Terrestre");
-            System.out.println("(2) Flora Acuatica");
-            System.out.println("(3) Ave");
-            System.out.println("(4) Mamifero");
-            System.out.println("(5) Acuatico");
+            System.out.println("Indicate the type of species");
+            System.out.println("(1) Terrestrial Flora");
+            System.out.println("(2) Aquatic Flora");
+            System.out.println("(3) Bird");
+            System.out.println("(4) Mammal");
+            System.out.println("(5) Aquatic");
             int typeOption = reader.nextInt();
             boolean ct = true;
             String type = "";
             while(ct==true){
                 switch(typeOption){
                     case 1:
-                        type = "Flora Terrestre";
+                        type = "Terrestrial Flora";
                         ct = false;
                         break;
                     case 2:
-                        type = "Flora Acuatica";
+                        type = "Aquatic Flora";
                         ct = false;
                         break;
                     case 3:
-                        type = "Ave";
+                        type = "Bird";
                         ct = false;
                         break;
                     case 4:
-                        type = "Mamifero";
+                        type = "Mammal";
                         ct = false;
                         break;
                     case 5:
-                        type = "Acuatico";
+                        type = "Aquatic";
                         ct = false;
                         break;
                     default:
-                        System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                        System.out.println("(1) Flora Terrestre");
-                        System.out.println("(2) Flora Acuatica");
-                        System.out.println("(3) Ave");
-                        System.out.println("(4) Mamifero");
-                        System.out.println("(5) Acuatico");
+                        System.out.println("Only the values shown are allowed, select from the following options:");
+                        System.out.println("(1) Terrestrial Flora");
+                        System.out.println("(2) Aquatic Flora");
+                        System.out.println("(3) Bird");
+                        System.out.println("(4) Mammal");
+                        System.out.println("(5) Aquatic");
                         typeOption = reader.nextInt(); 
                 }
             }
             reader.nextLine();
-            System.out.println("La especie a registrar es migratoria? (Si/No)");
+            System.out.println("Is the species to be recorded migratory? (Yes/No)");
             String opMig = reader.nextLine();
             boolean MigSpecie = false;
-            if(opMig.equalsIgnoreCase("si")){
+            if(opMig.equalsIgnoreCase("yes")){
                 MigSpecie = true;
             }else if(opMig.equalsIgnoreCase("no")){
                 MigSpecie = false;
             }else{
                 boolean err = true;
                 while(err==true){
-                    System.out.println("Indico de forma erronea la opcion anterior");
-                    System.out.println("por favor indique si la especie es migratoria (Si/No)");
+                    System.out.println("Wrongly indicated the previous option");
+                    System.out.println("please indicate if the species is migratory (Yes/No)");
                     opMig = reader.nextLine();
-                    if(opMig.equalsIgnoreCase("si") || opMig.equalsIgnoreCase("no")){
+                    if(opMig.equalsIgnoreCase("yes") || opMig.equalsIgnoreCase("no")){
                         err = false;
-                        if(opMig.equalsIgnoreCase("si")){
+                        if(opMig.equalsIgnoreCase("yes")){
                             MigSpecie = true;
                         }
                         if(opMig.equalsIgnoreCase("no")){
@@ -289,7 +289,7 @@ public class Main {
             }
             System.out.println("\n" + theMunicipality.addSpecieToWetland(wetlandName, nm, cnm, MigSpecie, type));
         }else{
-            System.out.println("\n" + "El humedal " + wetlandName + " no existe o no esta registrado");
+            System.out.println("\n" + "The wetland " + wetlandName + " does not exist or is not registered");
         }
     }
 
@@ -297,60 +297,67 @@ public class Main {
 	* Description: the "registerEventToWetland" method ask for the information needed to register a event and when is done call a method to register the event.<br>
 	*/
     public void registerEventToWetland(){
-        System.out.println("Indique el humedal donde se va a registrar la especie:");
+        System.out.println("Indicate the wetland where the event is to be recorded:");
         String wetlandName = reader.nextLine();
         boolean conf = theMunicipality.findWetland(wetlandName);
         if(conf==true){
-            System.out.println("Indique el tipo de evento");
-            System.out.println("(1) Mantenimientos");
-            System.out.println("(2) Visitas de colegio");
-            System.out.println("(3) Actividades de mejoramiento");
-            System.out.println("(4) Celebraciones");
+            System.out.println("Indicate the type of event");
+            System.out.println("(1) Maintenance");
+            System.out.println("(2) School visits");
+            System.out.println("(3) Improvement activities");
+            System.out.println("(4) Celebrations");
+            System.out.println("(5) Other");
             int tp = reader.nextInt();
             boolean ct = true;
             String type = "";
             while(ct==true){
                 switch(tp){
                     case 1:
-                        type = "Mantenimientos";
+                        type = "Maintenance";
                         ct = false;
                         break;
                     case 2:
-                        type = "Visitas de colegio";
+                        type = "School visits";
                         ct = false;
                         break;
                     case 3:
-                        type = "Actividades de mejoramiento";
+                        type = "Improvement activities";
                         ct = false;
                         break;
                     case 4:
-                        type = "Celebraciones";
+                        type = "Celebrations";
+                        ct = false;
+                        break;
+                    case 5:
+                        System.out.println("Indicate the name of the event");
+                        type = reader.nextLine();
                         ct = false;
                         break;
                     default:
-                        System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                        System.out.println("(1) Mantenimientos");
-                        System.out.println("(2) Visitas de colegio");
-                        System.out.println("(3) Actividades de mejoramiento");
-                        System.out.println("(4) Celebraciones");
+                        System.out.println("Only the values shown are allowed, select from the following options:");
+                        System.out.println("(1) Maintenance");
+                        System.out.println("(2) School visits");
+                        System.out.println("(3) Improvement activities");
+                        System.out.println("(4) Celebrations");
+                        System.out.println("(5) Other");
                         tp = reader.nextInt(); 
                 }
             }
             reader.nextLine();
-            System.out.println("Indique el nombre del encargado del evento");
+            System.out.println("Indicate the name of the person in charge of the event");
             String mang = reader.nextLine();
-            System.out.println("Indique el costo que tendra el evento (solo valor numerico)");
+            System.out.println("Indicate the cost of the event (numerical value only)");
             double cost = reader.nextDouble();
             reader.nextLine();
-            System.out.println("Añada una descripcion para el evento");
+            System.out.println("Add a description for the event");
             String desc = reader.nextLine();
-            System.out.println("Por ultimo añada la fecha del evento (formato d/m/aaaa)");
-            System.out.print("Dia: ");
+            System.out.println("Finally add the date of the event (format d/m/yyyy).");
+            System.out.print("Day: ");
             int d = reader.nextInt();
             if(d>31){
                 boolean err = true;
                 while(err){
-                    System.out.println("Error en la fecha, el dia no puede ser mayor a 31. Indicar denuevo");
+                    System.out.println("Error in the date, the day cannot be greater than 31. Enter again");
                     int day = reader.nextInt();
                     if(day<=31){
                         err = false;
@@ -358,12 +365,12 @@ public class Main {
                     }
                 }
             }
-            System.out.print("Mes: ");
+            System.out.print("Month: ");
             int m = reader.nextInt();
             if(m>12){
                 boolean err = true;
                 while(err){
-                    System.out.println("Error en la fecha, el mes no puede ser mayor a 12. Indicar denuevo");
+                    System.out.println("Error in the date, the month cannot be greater than 12. Enter again");
                     int month = reader.nextInt();
                     if(month<=12){
                         err = false;
@@ -371,12 +378,12 @@ public class Main {
                     }
                 }
             }
-            System.out.print("Año: ");
+            System.out.print("Year: ");
             int y = reader.nextInt();
             if(m==2 && d>28){
                 boolean err = true;
                 while(err){
-                    System.out.println("Error en la fecha, el mes Febrero (2) no puede tener mas de 28 dias. Indicar denuevo el dia");
+                    System.out.println("Error in the date, the month February (2) cannot have more than 28 days. Please enter the day again");
                     int day = reader.nextInt();
                     if (day<=28){
                         err = false;
@@ -392,48 +399,48 @@ public class Main {
 	* Description: the "registerEnvManagementToWetland" method ask for the information needed to register a Enviromental Management and when is done call a method to register the EnvManagement.<br>
 	*/
     public void registerEnvManagementToWetland(){
-        System.out.println("Para registrar el plan de mantenimiento de un humedal, primero indica el nombre del humedal");
-        String Wname = reader.nextLine();
-        System.out.println("Ahora indica el tipo de mantenimiento es:");
-        System.out.println("(1) Restauracion");
-        System.out.println("(2) Mantenimiento");
-        System.out.println("(3) Conservacion");
-        int MagOption = reader.nextInt();
+        System.out.println("To record the maintenance plan for a wetland, first indicate the name of the wetland.");
+        String wName = reader.nextLine();
+        System.out.println("Now indicate the type of maintenance it is:");
+        System.out.println("(1) Restoration");
+        System.out.println("(2) Maintenance");
+        System.out.println("(3) Conservation");
+        int magOption = reader.nextInt();
         boolean ct = true;
-        String MagType = "";
+        String magType = "";
         while(ct==true){
-            switch(MagOption){
+            switch(magOption){
                 case 1:
-                    MagType = "Restauracion";
+                    magType = "Restoration";
                     ct = false;
                     break;
                 case 2:
-                    MagType = "Mantenimiento";
+                    magType = "Maintenance";
                     ct = false;
                     break;
                 case 3:
-                    MagType = "Conservacion";
+                    magType = "Conservation";
                     ct = false;
                     break;
                 default:
-                    System.out.println("Solo se permiten los valores mostrados, seleccione entre las siguientes opciones:");
-                    System.out.println("(1) Restauracion");
-                    System.out.println("(2) Mantenimiento");
-                    System.out.println("(3) Conservacion");
-                    MagOption = reader.nextInt(); 
+                    System.out.println("Only the values shown are allowed, select from the following options:");
+                    System.out.println("(1) Restoration");
+                    System.out.println("(2) Maintenance");
+                    System.out.println("(3) Conservation");
+                    magOption = reader.nextInt(); 
             }
         }
         reader.nextLine();
-        System.out.println("Cual es el porcentaje de cumplimiento del plan (solo valor numerico)");
+        System.out.println("What is the percentage of compliance with the plan? (numerical value only)");
         double prc = reader.nextDouble()/100;
-        System.out.println(theMunicipality.addEnvMag(Wname, MagType, prc));
+        System.out.println(theMunicipality.addEnvMag(wName, magType, prc));
     }
 
     /**
 	* Description: the "getEnviromentalMag" method call a method in the controller to get all the Enviromental Managements.<br>
 	*/
     public void getEnviromentalMag(){
-        System.out.println("Los planes de mantenimiento hambientales en los humedales registrados son los siguientes :");
+        System.out.println("The environmental maintenance plans for the registered wetlands are as follows :");
         System.out.println(theMunicipality.showEnvManagements());
     }
 
@@ -441,7 +448,7 @@ public class Main {
 	* Description: the "getLessFloraSpecies" method call a method in the controller to get the wetland with less flora species.<br>
 	*/
     public void getLessFloraSpecies(){
-       System.out.println("El humedal con menor cantidad de flora es: ");
+       System.out.println("The wetland with the least amount of flora is: ");
        System.out.println(theMunicipality.getLessFlora());
     }
 
@@ -449,7 +456,7 @@ public class Main {
 	* Description: the "getSpecieInWetland" method call a method in the controller to look for a specie in the registered wetlands.<br>
 	*/
     public void getSpecieInWetland(){
-       System.out.println("Indique el nombre de la especie a buscar:");
+       System.out.println("Indicate the name of the species to be searched:");
        String nm = reader.nextLine();
        System.out.println(theMunicipality.searchSpecieInWetland(nm));
     }
@@ -458,7 +465,7 @@ public class Main {
 	* Description: the "getWetlandInfo" method call a method in the controller to get all the information of the registered wetlands.<br>
 	*/
     public void getWetlandInfo(){
-        System.out.println("La informacion registrada de los humedales hasta el momento es la siguiente:");
+        System.out.println("The information recorded for the wetlands so far is as follows:");
         System.out.println(theMunicipality.wetlandInfo());
     }
 
@@ -466,7 +473,7 @@ public class Main {
 	* Description: the "getMoreAnimalSpecie" method call a method in the controller to get the wetland with more animals species registered.<br>
 	*/
     public void getMoreAnimalSpecie(){
-        System.out.println("El humedal con mayor cantidad de animales es: ");
+        System.out.println("The wetland with the largest number of animals is: ");
        System.out.println(theMunicipality.getMoreAnimals());
     }
 }

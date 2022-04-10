@@ -68,8 +68,8 @@ public class EnvManagement {
 	*/
     public String toString() {
         return 
-            "\n Tipo='" + getType() + "'" +
-            "\n" + " Porcentaje de cumplimiento='" + getCompliancePercentage()*100 + "%" + "'"
+            "\n Type='" + getType() + "'" +
+            "\n" + " Percentage of compliance='" + getCompliancePercentage()*100 + "%" + "'"
             ;
     }
 }

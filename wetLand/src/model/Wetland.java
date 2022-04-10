@@ -269,15 +269,15 @@ public class Wetland{
 	*/
     public String toString() {
         return
-            " Nombre= '" + getName() + "'" + "\n" +
-            " Zona= '" + getZoneName() + "'" + "\n" +
-            " Ubicacion= '" + getLocationZone() + "'" + "\n" +
-            " tipo= '" + getType() + "'" + "\n" +
+            " Name= '" + getName() + "'" + "\n" +
+            " Zone= '" + getZoneName() + "'" + "\n" +
+            " Location= '" + getLocationZone() + "'" + "\n" +
+            " type= '" + getType() + "'" + "\n" +
             " Km2= '" + getKm2() + "'" + "\n" +
-            " Foto(URL)= '" + getPhotoUrl() + "'" + "\n" +
-            " protectedArea= '" + getProtectedArea() + "'" + "\n" +
-            " \n Especies= '" + getSpecies() + "'" + "\n" +
-            " \n Mantenimientos= '" + getEnvManagement() + "'" + "\n"
+            " Photo(URL)= '" + getPhotoUrl() + "'" + "\n" +
+            " Protected Area= '" + getProtectedArea() + "'" + "\n" +
+            " \n Species= '" + getSpecies() + "'" + "\n" +
+            " \n Maintenances= '" + getEnvManagement() + "'" + "\n"
             ;
     }
 
@@ -427,7 +427,7 @@ public class Wetland{
     public int getNumFlora(){
         int totalFlora = 0;
         for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
-            if(mySpecie[i].getType().equalsIgnoreCase("Flora Terrestre") || mySpecie[i].getType().equalsIgnoreCase("Flora Acuatica")){
+            if(mySpecie[i].getType().equalsIgnoreCase("Terrestrial Flora") || mySpecie[i].getType().equalsIgnoreCase("Aquatic Flora")){
                 totalFlora++;
             }
         }
@@ -441,7 +441,7 @@ public class Wetland{
     public int getNumAnimals(){
         int totalAnimals = 0;
         for(int i=0;i<MAX_ESPECIES && mySpecie[i]!=null;i++){
-            if(mySpecie[i].getType().equalsIgnoreCase("Ave") || mySpecie[i].getType().equalsIgnoreCase("Mamifero") || mySpecie[i].getType().equalsIgnoreCase("Acuatico")){
+            if(mySpecie[i].getType().equalsIgnoreCase("Bird") || mySpecie[i].getType().equalsIgnoreCase("Mammal") || mySpecie[i].getType().equalsIgnoreCase("Aquatic")){
                 totalAnimals++;
             }
         }

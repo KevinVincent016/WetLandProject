@@ -101,11 +101,11 @@ public class Municipality {
 		String out ="";
 		int emptyPos = getEmptyPositionWetland();
 		if(emptyPos == -1){
-			out = "Se ha llenado la cantidad maxima de humedales";
+			out = "The maximum amount of wetlands has been filled.";
 		}else{
 			Wetland theWetland = new Wetland(name, zName, locationZone, type, km2, photoURL, protectedArea);
 			myWetland[emptyPos] = theWetland;	
-			out = "Se agrego el humedal " + name + " del " + zName;
+			out = "The wetland " + name + " was added of the zone " + zName;
 		}
 		return out;
 	} 
@@ -128,9 +128,9 @@ public class Municipality {
             if(myWetland[i].getName().equalsIgnoreCase(wName)){
                 flag = false;
                 myWetland[i].addMySpecie(name, scientificName, migratorySpecie, type);
-                out = "Se ha registrado la especie " + name + " al humedal " + wName;
+                out = "The species " + name + " has been recorded in the wetland " + wName;
             }else{
-                out += "No se encontro ningun humedal con el nombre " + wName;
+                out += "No wetlands were found with the name " + wName;
             }
         }
         return out;
@@ -157,10 +157,10 @@ public class Municipality {
             if(myWetland[i].getName().equalsIgnoreCase(wName)){
                 Date theDate = new Date(day,month,year);
                 myWetland[i].addMyEvent(type, manager, cost, desc, theDate);
-                out = "El evento fue registrado exitosamente";
+                out = "The event was successfully registered";
                 flag = false;
             }else{
-                out += "No se encontro ningun humedal con el nombre " + wName;
+                out += "No wetlands were found with the name " + wName;
             }
         }
         return out;
@@ -181,10 +181,10 @@ public class Municipality {
         for(int i = 0; i<MAX_WETLAND && flag==true;i++){
             if(myWetland[i].getName().equalsIgnoreCase(wName)){
                 myWetland[i].addMyEnvMag(tp, percentage);
-                out = "El Plan de mantenimiento fue registrado exitosamente";
+                out = "The Maintenance Plan was successfully registered";
                 flag = false;
             }else{
-                out += "No se encontro ningun humedal con el nombre " + wName;
+                out += "No wetlands were found with the name " + wName;
             }
         }
         return out;
@@ -203,10 +203,10 @@ public class Municipality {
         for (int i=0; i<MAX_WETLAND && myWetland[i]!=null && cont==false;i++){
             boolean aux= myWetland[i].isSpecieHere(name);
             if(aux==true){
-                msg = "La especie " + name + " se encuentra en el humedal " + myWetland[i].getName();
+                msg = "The specie " + name + " occurs in the wetland " + myWetland[i].getName();
                 cont = true;
             }else{
-                msg += "La especie " + name + " no se encuentra registrada en ningun humedal";
+                msg += "The specie " + name + " is not recorded in any wetland.";
             }
         }
         return msg;
@@ -222,7 +222,7 @@ public class Municipality {
         String out = "";
         for(int i=0; i<MAX_WETLAND && myWetland[i]!=null;i++){
             out += "\n" + 
-            "Humedal: " + myWetland[i].getName() + "\n" +
+            "Wetland: " + myWetland[i].getName() + "\n" +
             myWetland[i].getEnvManagement() + "\n";
         }
         return out;
@@ -240,7 +240,7 @@ public class Municipality {
         for(int i=0;i<MAX_WETLAND && myWetland[i]!=null;i++){
             if(min>myWetland[i].getNumFlora()){
                 min = myWetland[i].getNumFlora();
-                nameMin = myWetland[i].getName() + " con " +myWetland[i].getNumFlora() + " cantidad de especies de flora";
+                nameMin = myWetland[i].getName() + " con " +myWetland[i].getNumFlora() + " number of flora species";
             }
         }
         return nameMin;
@@ -273,7 +273,7 @@ public class Municipality {
         for(int i=0;i<MAX_WETLAND && myWetland[i]!=null;i++){
             if(max<myWetland[i].getNumAnimals()){
                 max = myWetland[i].getNumFlora();
-                nameMax = myWetland[i].getName() + " con " + myWetland[i].getNumFlora() + " cantidad de Animales";
+                nameMax = myWetland[i].getName() + " with " + myWetland[i].getNumFlora() + " number of animals";
             }
         }
         return nameMax;

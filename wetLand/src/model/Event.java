@@ -147,7 +147,7 @@ public class Event {
             "\n manager='" + getManager() + "'" +
             "\n cost='" + getCost() + "'" +
             "\n description='" + getDescription() + "'" +
-            "\n theDate='" + getTheDate() + "'" +
+            "\n the date='" + getTheDate() + "'" +
             "\n";
     }
 

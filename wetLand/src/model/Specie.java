@@ -117,10 +117,10 @@ public class Specie {
 	*/
     public String toString() {
         return 
-            " \n Nombre= '" + getName() + "'" +
-            " \n Nombre cientifico= '" + getScientificName() + "'" +
-            " \n Especie Migratoria= '" + getMigratorySpecie() + "'" +
-            " \n Tipo= '" + getType() + "'"
+            " \n Name= '" + getName() + "'" +
+            " \n Scientific name= '" + getScientificName() + "'" +
+            " \n Migratory Specie= '" + getMigratorySpecie() + "'" +
+            " \n Type= '" + getType() + "'"
             ;
     }
     
